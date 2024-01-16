@@ -390,7 +390,7 @@
     <item>
      <widget class="QGroupBox" name="groupBox_4">
       <property name="enabled">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -429,7 +429,7 @@
         <number>-1</number>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="shema0">
         <property name="font">
@@ -442,7 +442,7 @@
         </attribute>
         <widget class="QLabel" name="label_9">
          <property name="enabled">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="geometry">
           <rect>
@@ -667,7 +667,7 @@ height : 20px;
         </widget>
         <widget class="QLabel" name="label_4">
          <property name="enabled">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="geometry">
           <rect>
@@ -843,7 +843,7 @@ height : 20px;
         </attribute>
         <widget class="QLabel" name="label_10">
          <property name="enabled">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="geometry">
           <rect>
@@ -883,7 +883,7 @@ height : 20px;
         </attribute>
         <widget class="QLabel" name="label_11">
          <property name="enabled">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="geometry">
           <rect>
@@ -923,7 +923,7 @@ height : 20px;
         </attribute>
         <widget class="QLabel" name="label_12">
          <property name="enabled">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="geometry">
           <rect>

@@ -194,7 +194,6 @@ void MainWindow::on_condensator2_clicked()
     }
 }
 
-
 void MainWindow::on_rezistor_constant_clicked()
 {
     if(ui->shema1_button1->isChecked())
@@ -256,7 +255,6 @@ void MainWindow::on_rezistor_variable_clicked()
     }
 }
 
-
 void MainWindow::on_provodnik_clicked()
 {
     if(ui->shema1_button1->isChecked())
@@ -284,7 +282,6 @@ void MainWindow::on_provodnik_clicked()
         ui->shema1_button4_1->setIcon(ico);
     }
 }
-
 
 void MainWindow::on_key_clicked()
 {

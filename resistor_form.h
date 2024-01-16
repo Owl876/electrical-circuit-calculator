@@ -23,6 +23,7 @@ public slots:
 
 signals:
     void signalForm(QString);
+
 private slots:
     void on_pushButton_clicked();
     void on_buttonBox_accepted();
