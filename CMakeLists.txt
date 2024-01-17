@@ -25,6 +25,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         resource.qrc
         resistor_form.h resistor_form.cpp resistor_form.ui
+        power_form.h power_form.cpp power_form.ui
+        voltage_form.h voltage_form.cpp voltage_form.ui
+        capacitance_form.h capacitance_form.cpp capacitance_form.ui
+
 
 
 

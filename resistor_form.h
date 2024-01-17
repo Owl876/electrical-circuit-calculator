@@ -19,14 +19,13 @@ private:
     Ui::Resistor_form *ui;
 
 public slots:
-    void slot(QString a);
+    void slotResistor(QString a);
 
 signals:
-    void signalForm(QString);
+    void signalFormResistor(QString);
 
 private slots:
     void on_pushButton_clicked();
-    void on_buttonBox_accepted();
 };
 
 #endif // RESISTOR_FORM_H

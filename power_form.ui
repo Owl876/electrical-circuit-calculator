@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Resistor_form</class>
- <widget class="QDialog" name="Resistor_form">
+ <class>Power_form</class>
+ <widget class="QDialog" name="Power_form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,8 +11,21 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Сопротивление резистора</string>
+   <string>Dialog</string>
   </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>220</y>
+     <width>311</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отправить</string>
+   </property>
+  </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
@@ -26,7 +39,7 @@
     <item>
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>Введите сопротивление резистора</string>
+       <string>Введите мощность потребителя</string>
       </property>
      </widget>
     </item>
@@ -38,27 +51,14 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>100</x>
      <y>30</y>
-     <width>191</width>
+     <width>231</width>
      <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>Характеристики резистора</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>220</y>
-     <width>311</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Отправить</string>
+    <string>Характеристики потребителя</string>
    </property>
   </widget>
  </widget>

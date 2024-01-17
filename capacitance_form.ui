@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Resistor_form</class>
- <widget class="QDialog" name="Resistor_form">
+ <class>Capacitance_form</class>
+ <widget class="QDialog" name="Capacitance_form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Сопротивление резистора</string>
+   <string>Dialog</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
@@ -26,7 +26,7 @@
     <item>
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>Введите сопротивление резистора</string>
+       <string>Введите емкость конденсатора</string>
       </property>
      </widget>
     </item>
@@ -38,14 +38,14 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>30</y>
-     <width>191</width>
+     <x>100</x>
+     <y>20</y>
+     <width>251</width>
      <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>Характеристики резистора</string>
+    <string>Характеристики конденсатора</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">

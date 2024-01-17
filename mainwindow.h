@@ -3,7 +3,10 @@
 
 #include <QMainWindow>
 #include "resistor_form.h"
-#include <ui_resistor_form.h>
+#include "power_form.h"
+#include "voltage_form.h"
+#include "capacitance_form.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -46,12 +49,21 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Resistor_form *resistor;
+    Power_form *powerfull;
+    Voltage_form *voltmeter;
+    Capacitance_form *capacitive;
 
 signals:
-    void signal(QString);
+    void signalResistor(QString);
+    void signalPower(QString);
+    void signalVoltage(QString);
+    void signalCapacitance(QString);
 
 public slots:
-    void slotForm(QString a);
+    void slotFormResistor(QString a);
+    void slotFormPower(QString b);
+    void slotFormVoltage(QString c);
+    void slotFormCapacitance(QString d);
 };
 
 

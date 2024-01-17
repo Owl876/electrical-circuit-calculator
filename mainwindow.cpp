@@ -9,11 +9,19 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     resistor = new Resistor_form;
+    powerfull = new Power_form;
+    capacitive = new Capacitance_form;
+    voltmeter = new Voltage_form;
+
+    connect(this, &MainWindow::signalResistor, resistor, &Resistor_form::slotResistor);
+    connect(resistor, &Resistor_form::signalFormResistor, this, &MainWindow::slotFormResistor);
+    connect(powerfull, &Power_form::signalFormPower, this, &MainWindow::slotFormPower);
+    connect(voltmeter, &Voltage_form::signalFormVoltage, this, &MainWindow::slotFormVoltage);
+    connect(capacitive, &Capacitance_form::signalFormCapacitance, this, &MainWindow::slotFormCapacitance);
 
 
-    connect(this, &MainWindow::signal, resistor, &Resistor_form::slot);
-    connect(resistor, &Resistor_form::signalForm, this, &MainWindow::slotForm);
 
 }
 
@@ -21,7 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
 // Список ячеек
 int cell1 = 0, cell2 = 0, cell3=0, cell4=0, cell5=0, cell6=0;
 // Значения токов
-double voltage = 0;
+// напряжение, мощность, сопротивление, емкость
+double voltage = 0, power = 0, resistance = 0, capacitance = 0;
 
 
 
@@ -34,7 +43,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_istochnik1_clicked()
 {
-    resistor->show();
+    voltmeter->show();
     if(ui->shema1_button1->isChecked())
     {
         QIcon ico;
@@ -72,6 +81,7 @@ void MainWindow::on_istochnik1_clicked()
 
 void MainWindow::on_istochnik2_clicked()
 {
+    voltmeter->show();
     if(ui->shema1_button1->isChecked())
     {
         QIcon ico;
@@ -108,6 +118,7 @@ void MainWindow::on_istochnik2_clicked()
 
 void MainWindow::on_potrebitel1_clicked()
 {
+    powerfull->show();
     if(ui->shema1_button1->isChecked())
     {
         QIcon ico;
@@ -140,6 +151,7 @@ void MainWindow::on_potrebitel1_clicked()
 
 void MainWindow::on_potrebitel2_clicked()
 {
+    powerfull->show();
     if(ui->shema1_button1->isChecked())
     {
         QIcon ico;
@@ -172,6 +184,7 @@ void MainWindow::on_potrebitel2_clicked()
 
 void MainWindow::on_condensator1_clicked()
 {
+    capacitive->show();
     if(ui->shema1_button1->isChecked())
     {
         QIcon ico;
@@ -204,6 +217,7 @@ void MainWindow::on_condensator1_clicked()
 
 void MainWindow::on_condensator2_clicked()
 {
+    capacitive->show();
     if(ui->shema1_button1->isChecked())
     {
         QIcon ico;
@@ -236,6 +250,7 @@ void MainWindow::on_condensator2_clicked()
 
 void MainWindow::on_rezistor_constant_clicked()
 {
+    resistor->show();
     if(ui->shema1_button1->isChecked())
     {
         QIcon ico;
@@ -273,6 +288,7 @@ void MainWindow::on_rezistor_constant_clicked()
 
 void MainWindow::on_rezistor_variable_clicked()
 {
+    resistor->show();
     if(ui->shema1_button1->isChecked())
     {
         QIcon ico;
@@ -381,14 +397,35 @@ void MainWindow::on_shema0_calculate_clicked()
     //}
     //qDebug() << "Index of current selected tab: " << currentIndex;
 
-    emit signal(ui->lineEdit->text());
+    emit signalResistor(ui->lineEdit->text());
 }
 
-void MainWindow::slotForm(QString a)
+void MainWindow::slotFormResistor(QString a)
 {
     ui->label->setText(a);
-    voltage = a.toDouble();
+    resistance = a.toDouble();
+    qDebug() << "resistanse: " << resistance;
+}
+
+void MainWindow::slotFormPower(QString b)
+{
+    ui->label_2->setText(b);
+    power = b.toDouble();
+    qDebug() << "power: " << power;
+}
+
+void MainWindow::slotFormVoltage(QString c)
+{
+    ui->label_2->setText(c);
+    voltage = c.toDouble();
     qDebug() << "voltage: " << voltage;
+}
+
+void MainWindow::slotFormCapacitance(QString d)
+{
+    ui->label_2->setText(d);
+    capacitance = d.toDouble();
+    qDebug() << "capacitance: " << capacitance;
 }
 
 
