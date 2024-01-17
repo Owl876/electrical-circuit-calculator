@@ -382,6 +382,8 @@ void MainWindow::on_shema0_calculate_clicked()
     //qDebug() << "Index of current selected tab: " << currentIndex;
 
     emit signal(ui->lineEdit->text());
+
+    emit signal(ui12->lineEdit->text());
 }
 
 void MainWindow::slotForm(QString a)
