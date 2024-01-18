@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
 int cell1 = 0, cell2 = 0, cell3=0, cell4=0, cell5=0, cell6=0, cell7=0;
 // Значения токов
 // напряжение, мощность, сопротивление, емкость
-double voltage = 0, power = 0, resistance = 0, capacitance = 0;
+double voltage[8], power[8], resistance[8], capacitance[8];
 
 
 
@@ -2054,30 +2054,158 @@ void MainWindow::on_shema4_calculate_clicked()
 
 void MainWindow::slotFormResistor(QString a)
 {
-    ui->label->setText(a);
-    resistance = a.toDouble();
-    qDebug() << "resistanse: " << resistance;
+    if(ui->shema0_button1->isChecked() or ui->shema1_button1->isChecked() or ui->shema2_button1->isChecked() or ui->shema3_button1->isChecked() or ui->shema4_button1->isChecked())
+    {
+        resistance[1] = a.toDouble();
+    }
+    if(ui->shema0_button2->isChecked() or ui->shema1_button2->isChecked() or ui->shema2_button2->isChecked() or ui->shema3_button2->isChecked() or ui->shema4_button2->isChecked())
+    {
+        resistance[2] = a.toDouble();
+    }
+    if(ui->shema0_button3->isChecked() or ui->shema1_button3->isChecked() or ui->shema2_button3->isChecked() or ui->shema3_button3->isChecked() or ui->shema4_button3->isChecked())
+    {
+        resistance[3] = a.toDouble();
+    }
+    if(ui->shema0_button4->isChecked() or ui->shema1_button4->isChecked() or ui->shema2_button4->isChecked() or ui->shema3_button4->isChecked() or ui->shema4_button4->isChecked())
+    {
+        resistance[4] = a.toDouble();
+    }
+    if(ui->shema2_button5->isChecked() or ui->shema3_button5->isChecked() or ui->shema4_button5->isChecked())
+    {
+        resistance[5] = a.toDouble();
+    }
+    if(ui->shema3_button6->isChecked() or ui->shema4_button6->isChecked())
+    {
+        resistance[6] = a.toDouble();
+    }
+    if(ui->shema4_button7->isChecked())
+    {
+        resistance[7] = a.toDouble();
+    }
+    qDebug() << "resistanse: " << resistance[1];
+    qDebug() << "resistanse: " << resistance[2];
+    qDebug() << "resistanse: " << resistance[3];
+    qDebug() << "resistanse: " << resistance[4];
+    qDebug() << "resistanse: " << resistance[5];
+    qDebug() << "resistanse: " << resistance[6];
+    qDebug() << "resistanse: " << resistance[7];
 }
 
 void MainWindow::slotFormPower(QString b)
 {
-    ui->label->setText(b);
-    power = b.toDouble();
-    qDebug() << "power: " << power;
+    if(ui->shema0_button1->isChecked() or ui->shema1_button1->isChecked() or ui->shema2_button1->isChecked() or ui->shema3_button1->isChecked() or ui->shema4_button1->isChecked())
+    {
+        power[1] = b.toDouble();
+    }
+    if(ui->shema0_button2->isChecked() or ui->shema1_button2->isChecked() or ui->shema2_button2->isChecked() or ui->shema3_button2->isChecked() or ui->shema4_button2->isChecked())
+    {
+        power[2] = b.toDouble();
+    }
+    if(ui->shema0_button3->isChecked() or ui->shema1_button3->isChecked() or ui->shema2_button3->isChecked() or ui->shema3_button3->isChecked() or ui->shema4_button3->isChecked())
+    {
+        power[3] = b.toDouble();
+    }
+    if(ui->shema0_button4->isChecked() or ui->shema1_button4->isChecked() or ui->shema2_button4->isChecked() or ui->shema3_button4->isChecked() or ui->shema4_button4->isChecked())
+    {
+        power[4] = b.toDouble();
+    }
+    if(ui->shema2_button5->isChecked() or ui->shema3_button5->isChecked() or ui->shema4_button5->isChecked())
+    {
+        power[5] = b.toDouble();
+    }
+    if(ui->shema3_button6->isChecked() or ui->shema4_button6->isChecked())
+    {
+        power[6] = b.toDouble();
+    }
+    if(ui->shema4_button7->isChecked())
+    {
+        power[7] = b.toDouble();
+    }
+    qDebug() << "power: " << power[1];
+    qDebug() << "power: " << power[2];
+    qDebug() << "power: " << power[3];
+    qDebug() << "power: " << power[4];
+    qDebug() << "power: " << power[5];
+    qDebug() << "power: " << power[6];
+    qDebug() << "power: " << power[7];
 }
 
 void MainWindow::slotFormVoltage(QString c)
 {
-    ui->label->setText(c);
-    voltage = c.toDouble();
-    qDebug() << "voltage: " << voltage;
+    if(ui->shema0_button1->isChecked() or ui->shema1_button1->isChecked() or ui->shema2_button1->isChecked() or ui->shema3_button1->isChecked() or ui->shema4_button1->isChecked())
+    {
+        voltage[1] = c.toDouble();
+    }
+    if(ui->shema0_button2->isChecked() or ui->shema1_button2->isChecked() or ui->shema2_button2->isChecked() or ui->shema3_button2->isChecked() or ui->shema4_button2->isChecked())
+    {
+        voltage[2] = c.toDouble();
+    }
+    if(ui->shema0_button3->isChecked() or ui->shema1_button3->isChecked() or ui->shema2_button3->isChecked() or ui->shema3_button3->isChecked() or ui->shema4_button3->isChecked())
+    {
+        voltage[3] = c.toDouble();
+    }
+    if(ui->shema0_button4->isChecked() or ui->shema1_button4->isChecked() or ui->shema2_button4->isChecked() or ui->shema3_button4->isChecked() or ui->shema4_button4->isChecked())
+    {
+        voltage[4] = c.toDouble();
+    }
+    if(ui->shema2_button5->isChecked() or ui->shema3_button5->isChecked() or ui->shema4_button5->isChecked())
+    {
+        voltage[5] = c.toDouble();
+    }
+    if(ui->shema3_button6->isChecked() or ui->shema4_button6->isChecked())
+    {
+        voltage[6] = c.toDouble();
+    }
+    if(ui->shema4_button7->isChecked())
+    {
+        voltage[7] = c.toDouble();
+    }
+    qDebug() << "voltage: " << voltage[1];
+    qDebug() << "voltage: " << voltage[2];
+    qDebug() << "voltage: " << voltage[3];
+    qDebug() << "voltage: " << voltage[4];
+    qDebug() << "voltage: " << voltage[5];
+    qDebug() << "voltage: " << voltage[6];
+    qDebug() << "voltage: " << voltage[7];
 }
 
 void MainWindow::slotFormCapacitance(QString d)
 {
-    ui->label->setText(d);
-    capacitance = d.toDouble();
-    qDebug() << "capacitance: " << capacitance;
+    if(ui->shema0_button1->isChecked() or ui->shema1_button1->isChecked() or ui->shema2_button1->isChecked() or ui->shema3_button1->isChecked() or ui->shema4_button1->isChecked())
+    {
+        capacitance[1] = d.toDouble();
+    }
+    if(ui->shema0_button2->isChecked() or ui->shema1_button2->isChecked() or ui->shema2_button2->isChecked() or ui->shema3_button2->isChecked() or ui->shema4_button2->isChecked())
+    {
+        capacitance[2] = d.toDouble();
+    }
+    if(ui->shema0_button3->isChecked() or ui->shema1_button3->isChecked() or ui->shema2_button3->isChecked() or ui->shema3_button3->isChecked() or ui->shema4_button3->isChecked())
+    {
+        capacitance[3] = d.toDouble();
+    }
+    if(ui->shema0_button4->isChecked() or ui->shema1_button4->isChecked() or ui->shema2_button4->isChecked() or ui->shema3_button4->isChecked() or ui->shema4_button4->isChecked())
+    {
+        capacitance[4] = d.toDouble();
+    }
+    if(ui->shema2_button5->isChecked() or ui->shema3_button5->isChecked() or ui->shema4_button5->isChecked())
+    {
+        capacitance[5] = d.toDouble();
+    }
+    if(ui->shema3_button6->isChecked() or ui->shema4_button6->isChecked())
+    {
+        capacitance[6] = d.toDouble();
+    }
+    if(ui->shema4_button7->isChecked())
+    {
+        capacitance[7] = d.toDouble();
+    }
+    qDebug() << "capacitance: " << capacitance[1];
+    qDebug() << "capacitance: " << capacitance[2];
+    qDebug() << "capacitance: " << capacitance[3];
+    qDebug() << "capacitance: " << capacitance[4];
+    qDebug() << "capacitance: " << capacitance[5];
+    qDebug() << "capacitance: " << capacitance[6];
+    qDebug() << "capacitance: " << capacitance[7];
 }
 
 

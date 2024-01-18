@@ -13,6 +13,11 @@ Voltage_form::~Voltage_form()
     delete ui;
 }
 
+void Voltage_form::slotVoltage(QString c)
+{
+    ui->label->setText(c);
+}
+
 
 void Voltage_form::on_pushButton_clicked()
 {

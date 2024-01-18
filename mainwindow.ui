@@ -911,7 +911,7 @@
         <string notr="true"/>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="shema0">
         <property name="font">
@@ -1083,8 +1083,11 @@ alternate-background-color: rgb(255, 255, 255);</string>
            <height>50</height>
           </size>
          </property>
-         <property name="checked">
+         <property name="checkable">
           <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QPushButton" name="shema0_button3_1">
@@ -1303,6 +1306,9 @@ height : 20px;
            <height>30</height>
           </size>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::StrongFocus</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">QRadioButton::indicator
 {
@@ -1323,8 +1329,11 @@ alternate-background-color: rgb(255, 255, 255);</string>
            <height>50</height>
           </size>
          </property>
-         <property name="checked">
+         <property name="checkable">
           <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QRadioButton" name="shema1_button2">
@@ -3296,54 +3305,73 @@ alternate-background-color: rgb(255, 255, 255);</string>
       <property name="title">
        <string>Результаты</string>
       </property>
-      <widget class="QLabel" name="label">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
          <x>20</x>
          <y>50</y>
-         <width>91</width>
-         <height>20</height>
+         <width>241</width>
+         <height>361</height>
         </rect>
        </property>
-       <property name="text">
-        <string>Сила тока</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>50</y>
-         <width>113</width>
-         <height>28</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_2">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>90</y>
-         <width>113</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>90</y>
-         <width>91</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Напряжение</string>
-       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Ошбая инфа по расчетам</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>Напряжение</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Напряжение</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>Напряжение</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>Напряжение</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>Напряжение</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>Напряжение</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>Напряжение</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

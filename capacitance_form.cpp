@@ -18,3 +18,8 @@ void Capacitance_form::on_pushButton_clicked()
     emit signalFormCapacitance(ui->lineEdit->text());
 }
 
+void Capacitance_form::slotCapacitance(QString d)
+{
+    ui->label->setText(d);
+}
+
