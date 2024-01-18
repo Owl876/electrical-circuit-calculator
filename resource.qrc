@@ -1,21 +1,35 @@
 <RCC>
     <qresource prefix="/res"/>
     <qresource prefix="/">
-        <file>img/svetodiod.png</file>
-        <file>img/shema3.jpg</file>
-        <file>img/istochnik.png</file>
-        <file>img/istochnik2.png</file>
-        <file>img/lamp.png</file>
-        <file>img/poliarizovanii kondensator.png</file>
-        <file>img/postoiannii kondensator.png</file>
-        <file>img/rezistor1.png</file>
-        <file>img/rezistor2.png</file>
-        <file>img/kluch.png</file>
-        <file>img/provodnik.png</file>
         <file>img/shemi/shema0.png</file>
         <file>img/shemi/shema1.png</file>
         <file>img/shemi/shema2.png</file>
         <file>img/shemi/shema3.png</file>
         <file>img/shemi/shema4.png</file>
+        <file>img/shemi2/shema0.png</file>
+        <file>img/shemi2/shema1.png</file>
+        <file>img/shemi2/shema2.png</file>
+        <file>img/shemi2/shema3.png</file>
+        <file>img/shemi2/shema4.png</file>
+        <file>img/elements/istochnik.png</file>
+        <file>img/elements/istochnik2.png</file>
+        <file>img/elements/lamp.png</file>
+        <file>img/elements/kluch.png</file>
+        <file>img/elements/poliarizovanii kondensator.png</file>
+        <file>img/elements/postoiannii kondensator.png</file>
+        <file>img/elements/provodnik.png</file>
+        <file>img/elements/Resistor2.png</file>
+        <file>img/elements/rezistor1.png</file>
+        <file>img/elements/svetodiod.png</file>
+        <file>img/RotatedElements/istochnik.png</file>
+        <file>img/RotatedElements/istochnik2.png</file>
+        <file>img/RotatedElements/kluch.png</file>
+        <file>img/RotatedElements/lamp.png</file>
+        <file>img/RotatedElements/poliarizovanii kondensator.png</file>
+        <file>img/RotatedElements/postoiannii kondensator.png</file>
+        <file>img/RotatedElements/provodnik.png</file>
+        <file>img/RotatedElements/resistor2.png</file>
+        <file>img/RotatedElements/rezistor1.png</file>
+        <file>img/RotatedElements/svetodiod.png</file>
     </qresource>
 </RCC>

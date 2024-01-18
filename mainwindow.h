@@ -46,6 +46,14 @@ private slots:
 
     void on_shema0_calculate_clicked();
 
+    void on_shema1_calculate_clicked();
+
+    void on_shema2_calculate_clicked();
+
+    void on_shema3_calculate_clicked();
+
+    void on_shema4_calculate_clicked();
+
 private:
     Ui::MainWindow *ui;
     Resistor_form *resistor;
