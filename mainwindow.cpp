@@ -2024,8 +2024,51 @@ void MainWindow::on_key_clicked()
 // Это кнопки "Расчитать". В них делай основые вычисления по каждой схеме
 void MainWindow::on_shema0_calculate_clicked()
 {
-    // Это стандартный метод вывода на экран (текст появится в правом верхем углу)
-    ui->label->setText("Хелоу");
+    if ((cell1 != 1) and (cell1 !=2) and (cell2 != 1) and (cell2 !=2) and (cell3 != 1) and (cell3 !=2) and (cell4 != 1) and (cell4 !=2)) {
+        ui->label->setText("Источник отсутствует");
+    } else if ((cell1 == 10) or (cell2 == 10) or  (cell3 == 10) or  (cell4 == 10)) {
+        ui->label->setText("Цепь не замкнута");
+    } else {
+        double amperage1 = 0, amperage2 = 0, amperage3 = 0, amperage4 = 0, allvoltage = 0, allresistance = 0;
+        // Это стандартный метод вывода на экран (текст появится в правом верхем углу)
+        if (cell1 == 1 or cell1 == 2) {
+            allvoltage = allvoltage + voltage[1];
+        } else if (cell1 == 7 or cell1 == 8) {
+            allresistance = allresistance + resistance[1];
+        }
+        if (cell2 == 1 or cell2 == 2) {
+            allvoltage = allvoltage + voltage[2];
+        } else if (cell2 == 7 or cell2 == 8) {
+            allresistance = allresistance + resistance[2];
+        }
+        if (cell3 == 1 or cell3 == 2) {
+            allvoltage = allvoltage + voltage[3];
+        } else if (cell3 == 7 or cell3 == 8) {
+            allresistance = allresistance + resistance[3];
+        }
+        if (cell4 == 1 or cell4 == 2) {
+            allvoltage = allvoltage + voltage[4];
+        } else if (cell4 == 7 or cell4 == 8) {
+            allresistance = allresistance + resistance[4];
+        }
+
+        if (cell1 == 3 or cell1 == 4) {
+            allresistance = allresistance + (allvoltage*allvoltage/power[1]);
+        }
+        if (cell2 == 3 or cell2 == 4) {
+            allresistance = allresistance + (allvoltage*allvoltage/power[2]);
+        }
+        if (cell3 == 3 or cell3 == 4) {
+            allresistance = allresistance + (allvoltage*allvoltage/power[3]);
+        }
+        if (cell4 == 3 or cell4 == 4) {
+            allresistance = allresistance + (allvoltage*allvoltage/power[4]);
+        }
+
+        QString result = QString::number (allvoltage/allresistance);
+        ui->label->setText(result);
+    }
+    //ui->label->setText("Хелоу");
 }
 
 void MainWindow::on_shema1_calculate_clicked()
