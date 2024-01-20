@@ -2026,10 +2026,10 @@ void MainWindow::on_shema0_calculate_clicked()
 {
     if ((cell1 != 1) and (cell1 !=2) and (cell2 != 1) and (cell2 !=2) and (cell3 != 1) and (cell3 !=2) and (cell4 != 1) and (cell4 !=2)) {
         ui->label->setText("Источник отсутствует");
-    } else if ((cell1 == 10) or (cell2 == 10) or  (cell3 == 10) or  (cell4 == 10)) {
+    } else if ((cell1 == 10) or (cell2 == 10) or  (cell3 == 10) or  (cell4 == 10) or (cell1 == 5) or (cell2 == 5) or  (cell3 == 5) or  (cell4 == 5) or (cell1 == 6) or (cell2 == 6) or  (cell3 == 6) or  (cell4 == 6)) {
         ui->label->setText("Цепь не замкнута");
     } else {
-        double amperage1 = 0, amperage2 = 0, amperage3 = 0, amperage4 = 0, allvoltage = 0, allresistance = 0;
+        double allvoltage = 0, allresistance = 0;
         // Это стандартный метод вывода на экран (текст появится в правом верхем углу)
         if (cell1 == 1 or cell1 == 2) {
             allvoltage = allvoltage + voltage[1];
@@ -2065,8 +2065,24 @@ void MainWindow::on_shema0_calculate_clicked()
             allresistance = allresistance + (allvoltage*allvoltage/power[4]);
         }
 
-        QString result = QString::number (allvoltage/allresistance);
-        ui->label->setText(result);
+        QString amperage = QString::number (allvoltage/allresistance);
+        QString voltageText = "";
+        ui->label->setText(amperage);
+
+        if (cell1 == 3 or cell1 == 4) {
+            voltageText = voltageText + "Напряжение у лампочки = " + QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[1])) + '\n';
+        }
+        if (cell2 == 3 or cell2 == 4) {
+            voltageText = voltageText + "Напряжение у лампочки = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[2])) + '\n';
+        }
+        if (cell3 == 3 or cell3 == 4) {
+            voltageText = voltageText + "Напряжение у лампочки = " + QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[3])) + '\n';
+        }
+        if (cell4 == 3 or cell4 == 4) {
+            voltageText = voltageText + "Напряжение у лампочки = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[4])) + '\n';
+        }
+
+        ui->label_13->setText(voltageText);
     }
     //ui->label->setText("Хелоу");
 }
