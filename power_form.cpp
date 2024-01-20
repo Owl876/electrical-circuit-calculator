@@ -23,5 +23,6 @@ void Power_form::slotPower(QString b)
 void Power_form::on_pushButton_clicked()
 {
     emit signalFormPower(ui->lineEdit->text());
+    QWidget::close();
 }
 

@@ -16,6 +16,7 @@ Capacitance_form::~Capacitance_form()
 void Capacitance_form::on_pushButton_clicked()
 {
     emit signalFormCapacitance(ui->lineEdit->text());
+    QWidget::close();
 }
 
 void Capacitance_form::slotCapacitance(QString d)

@@ -21,5 +21,6 @@ void Resistor_form::slotResistor(QString a)
 void Resistor_form::on_pushButton_clicked()
 {
     emit signalFormResistor(ui->lineEdit->text());
+    QWidget::close();
 }
 

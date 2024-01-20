@@ -22,5 +22,6 @@ void Voltage_form::slotVoltage(QString c)
 void Voltage_form::on_pushButton_clicked()
 {
     emit signalFormVoltage(ui->lineEdit->text());
+    QWidget::close();
 }
 

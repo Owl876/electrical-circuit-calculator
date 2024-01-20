@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1106</width>
+    <width>1200</width>
     <height>614</height>
    </rect>
   </property>
@@ -911,7 +911,7 @@
         <string notr="true"/>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="shema0">
         <property name="font">
@@ -3290,9 +3290,15 @@ alternate-background-color: rgb(255, 255, 255);</string>
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox_9">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
-        <width>270</width>
+        <width>370</width>
         <height>0</height>
        </size>
       </property>
@@ -3305,18 +3311,30 @@ alternate-background-color: rgb(255, 255, 255);</string>
       <property name="title">
        <string>Результаты</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>20</x>
          <y>50</y>
-         <width>241</width>
+         <width>362</width>
          <height>361</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>330</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>330</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
            <string>Ошбая инфа по расчетам</string>
           </property>
@@ -3324,6 +3342,18 @@ alternate-background-color: rgb(255, 255, 255);</string>
         </item>
         <item>
          <widget class="QLabel" name="label_13">
+          <property name="minimumSize">
+           <size>
+            <width>330</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>330</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
            <string>Напряжение</string>
           </property>
@@ -3331,41 +3361,18 @@ alternate-background-color: rgb(255, 255, 255);</string>
         </item>
         <item>
          <widget class="QLabel" name="label_14">
-          <property name="text">
-           <string>Напряжение</string>
+          <property name="minimumSize">
+           <size>
+            <width>330</width>
+            <height>0</height>
+           </size>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_15">
-          <property name="text">
-           <string>Напряжение</string>
+          <property name="maximumSize">
+           <size>
+            <width>330</width>
+            <height>16777215</height>
+           </size>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_16">
-          <property name="text">
-           <string>Напряжение</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_17">
-          <property name="text">
-           <string>Напряжение</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_18">
-          <property name="text">
-           <string>Напряжение</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_19">
           <property name="text">
            <string>Напряжение</string>
           </property>
@@ -3382,7 +3389,7 @@ alternate-background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1106</width>
+     <width>1200</width>
      <height>25</height>
     </rect>
    </property>

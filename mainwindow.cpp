@@ -2067,19 +2067,19 @@ void MainWindow::on_shema0_calculate_clicked()
 
         QString amperage = QString::number (allvoltage/allresistance);
         QString voltageText = "";
-        ui->label->setText(amperage);
+        ui->label->setText("Сила тока в цепи = " + amperage + "А");
 
         if (cell1 == 3 or cell1 == 4) {
-            voltageText = voltageText + "Напряжение у лампочки = " + QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[1])) + '\n';
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[1]) + "Вт = " + QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[1])) + '\n';
         }
         if (cell2 == 3 or cell2 == 4) {
-            voltageText = voltageText + "Напряжение у лампочки = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[2])) + '\n';
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[2]) + "Вт = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[2])) + '\n';
         }
         if (cell3 == 3 or cell3 == 4) {
-            voltageText = voltageText + "Напряжение у лампочки = " + QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[3])) + '\n';
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[3]) + "Вт = " + QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[3])) + '\n';
         }
         if (cell4 == 3 or cell4 == 4) {
-            voltageText = voltageText + "Напряжение у лампочки = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[4])) + '\n';
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[4]) + "Вт = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[4])) + '\n';
         }
 
         ui->label_13->setText(voltageText);
