@@ -2229,7 +2229,91 @@ void MainWindow::on_shema2_calculate_clicked()
 
 void MainWindow::on_shema3_calculate_clicked()
 {
+    if ((cell1 != 1) and (cell1 !=2) and (cell2 != 1) and (cell2 !=2) and (cell3 != 1) and (cell3 !=2) and (cell4 != 1) and (cell4 !=2) and (cell5 != 1) and (cell5!=2) and (cell6!= 1) and (cell6!=2)) {
+        ui->label->setText("Источник отсутствует");
+    } else if ((cell2 == 10) or (cell2 == 5) or (cell2==6) or (cell4 == 10) or (cell4 == 5) or (cell4==6) or ((cell6 == 10 or cell6==5 or cell6==6) and (cell5 == 10 or cell5==5 or cell5==6)) or ((cell1 == 10 or cell1==5 or cell1==6) and (cell3 == 10 or cell3==5 or cell3==6))) {
+        ui->label->setText("Цепь не замкнута");
+    } else {
+        double allvoltage = 0, allresistance = 0;
+        if (cell4 == 1 or cell4 ==2 ){
+            allvoltage += voltage[4];
+        }else if (cell4 == 7 or cell4 == 8){
+            allresistance += resistance[4];
+        }
+        if (cell2 == 1 or cell2 ==2 ){
+            allvoltage += voltage[2];
+        }else if (cell2 == 7 or cell2 == 8){
+            allresistance += resistance[2];
+        }
 
+        if (cell5 == 1 or cell5 == 2) {
+            allvoltage += voltage[5];
+        }
+        if (cell3 == 1 or cell3 == 2) {
+            allvoltage += voltage[3];
+        }
+        if (cell1 == 1 or cell1 == 2) {
+            allvoltage += voltage[1];
+        }
+        if (cell6 == 1 or cell6 == 2) {
+            allvoltage += voltage[6];
+        }
+
+        if (cell1 == 3 or cell1 == 4) {
+            resistance[1] = (allvoltage*allvoltage/power[1]);
+        }
+        if (cell3 == 3 or cell3 == 4) {
+            resistance[3] = (allvoltage*allvoltage/power[3]);
+        }
+
+        if (resistance[1]*resistance[3] !=0 ) {
+            allresistance += (resistance[1]*resistance[3])/(resistance[1]+resistance[3]);
+        }
+
+        if (cell5 == 3 or cell5 == 4) {
+            resistance[5] = (allvoltage*allvoltage/power[5]);
+        }
+        if (cell6 == 3 or cell6 == 4) {
+            resistance[6] = (allvoltage*allvoltage/power[6]);
+        }
+
+        if (resistance[5]*resistance[6] !=0 ) {
+            allresistance += (resistance[5]*resistance[6])/(resistance[5]+resistance[6]);
+        }
+
+
+        if (cell4 == 3 or cell4 ==4) {
+            allresistance += allvoltage*allvoltage/power[4];
+        }
+        if (cell2 == 3 or cell2 ==4) {
+            allresistance += allvoltage*allvoltage/power[2];
+        }
+
+        QString amperage = QString::number (allvoltage/allresistance);
+        QString voltageText = "";
+        ui->label->setText("Сила тока в цепи = " + amperage + "А");
+
+        if (cell1 == 3 or cell1 == 4) {
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[1]) + "Вт = " + QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[1])) + '\n';
+        }
+        if (cell2 == 3 or cell2 == 4) {
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[2]) + "Вт = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[2])) + '\n';
+        }
+        if (cell3 == 3 or cell3 == 4) {
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[3]) + "Вт = " + QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[3])) + '\n';
+        }
+        if (cell4 == 3 or cell4 == 4) {
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[4]) + "Вт = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[4])) + '\n';
+        }
+        if (cell5 == 3 or cell5 == 4) {
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[5]) + "Вт = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[5])) + '\n';
+        }
+        if (cell6 == 3 or cell6 == 4) {
+            voltageText = voltageText + "Напряжение на потребителе мощностью " + QString::number(power[6]) + "Вт = "+ QString::number(amperage.toDouble() * (allvoltage*allvoltage/power[6])) + '\n';
+        }
+
+        ui->label_13->setText(voltageText);
+    }
 }
 
 void MainWindow::on_shema4_calculate_clicked()
