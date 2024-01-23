@@ -7,10 +7,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    w.show();
+
     qApp->setStyle(QStyleFactory::create("Fusion"));
-
-
+    w.setWindowTitle("Калькулятор электрических цепей");
+    w.show();
 
     return a.exec();
 }
