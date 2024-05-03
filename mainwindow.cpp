@@ -1,8 +1,9 @@
-     #include "mainwindow.h"
+#include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "QPixmap"
 #include "QSignalMapper"
 #include <QtWidgets>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -2030,28 +2031,47 @@ void MainWindow::on_shema0_calculate_clicked()
         ui->label->setText("Цепь не замкнута");
     } else {
         double allvoltage = 0, allresistance = 0;
+
+        QString circuitText = "I1 * (";
+        QString powerText = "";
+        //int countRez = 1;
+        int countPow = 0;
+
         // Это стандартный метод вывода на экран (текст появится в правом верхем углу)
         if (cell1 == 1 or cell1 == 2) {
-            allvoltage = allvoltage + voltage[1];
+            allvoltage += voltage[1];
+            powerText += "E1 +";
         } else if (cell1 == 7 or cell1 == 8) {
-            allresistance = allresistance + resistance[1];
+            allresistance += resistance[1];
+            //circuitText = circuitText + " R" + QString::number(countRez) + " +";
+            circuitText += " R1 +";
+            //countRez += 1;
         }
         if (cell2 == 1 or cell2 == 2) {
-            allvoltage = allvoltage + voltage[2];
+            allvoltage += voltage[2];
+            powerText += "E2 +";
         } else if (cell2 == 7 or cell2 == 8) {
-            allresistance = allresistance + resistance[2];
+            allresistance += resistance[2];
+            circuitText += " R2 +";
+            //countRez += 1;
         }
         if (cell3 == 1 or cell3 == 2) {
-            allvoltage = allvoltage + voltage[3];
+            allvoltage += voltage[3];
+            powerText += "E3 +";
         } else if (cell3 == 7 or cell3 == 8) {
-            allresistance = allresistance + resistance[3];
+            allresistance += resistance[3];
+            circuitText += " R3 +";
+            //countRez += 1;
         }
         if (cell4 == 1 or cell4 == 2) {
-            allvoltage = allvoltage + voltage[4];
+            allvoltage += voltage[4];
+            powerText += "E4 +";
         } else if (cell4 == 7 or cell4 == 8) {
-            allresistance = allresistance + resistance[4];
+            allresistance += resistance[4];
+            circuitText += " R4 +";
+            //countRez += 1;
         }
-
+        //вот тут мб надо еще для лампочек добавить R1234...
         if (cell1 == 3 or cell1 == 4) {
             allresistance = allresistance + (allvoltage*allvoltage/power[1]);
         }
@@ -2088,6 +2108,14 @@ void MainWindow::on_shema0_calculate_clicked()
         }
 
         ui->label_13->setText(voltageText);
+        circuitText.chop(2);
+        circuitText = circuitText + " ) = ";
+        powerText.chop(2);
+
+
+        QString combinedText = circuitText + powerText;
+        ui->label_2->setText(combinedText);
+
     }
     //ui->label->setText("Хелоу");
 }
@@ -2100,21 +2128,43 @@ void MainWindow::on_shema1_calculate_clicked()
         ui->label->setText("Цепь не замкнута");
     } else {
         double allvoltage = 0, allresistance = 0;
+
+        QString circuitI1Text = "I1 * (";
+        QString circuitI2Text = "I2 * (";
+        QString powerI1Text = "";
+        QString powerI2Text = "";
+
         if (cell1 == 1 or cell1 == 2) {
             allvoltage += voltage[1];
+            powerI1Text += " E1 +";
         } else if (cell1 == 7 or cell1 == 8){
             allresistance += resistance[1];
+            //circuitI1Text = circuitI1Text + " R" + QString::number(count) + " +";
+            circuitI1Text += " R1 +";
+            //count += 1;
         }
         if (cell4 == 1 or cell4 ==2 ){
             allvoltage += voltage[4];
+            powerI1Text += " E4 +";
         }else if (cell4 == 7 or cell4 == 8){
             allresistance += resistance[4];
+            circuitI1Text += " R4 +";
         }
         if (cell2 == 1 or cell2 == 2) {
             allvoltage += voltage[2];
+            powerI2Text += " E2 +";
+            powerI1Text.chop(2);
+            powerI1Text += " - E2 +";
+        }else if (cell2 == 7 or cell2 == 8){
+            circuitI2Text += " R2 +";
+            circuitI1Text.chop(2);
+            circuitI1Text += " - R2 +";
         }
         if (cell3 == 1 or cell3 == 2) {
             allvoltage += voltage[3];
+            powerI2Text += " E3 +";
+        }else if (cell3 == 7 or cell3 == 8){
+            circuitI2Text += " R3 +";
         }
         if (cell2 == 3 or cell2 == 4) {
             resistance[2] = (allvoltage*allvoltage/power[2]);
@@ -2128,7 +2178,7 @@ void MainWindow::on_shema1_calculate_clicked()
             allresistance += (resistance[2]*resistance[3])/(resistance[2]+resistance[3]);
         }
 
-
+        //lamps
         if (cell1 == 3 or cell1 ==4) {
             allresistance += allvoltage*allvoltage/power[1];
         }
@@ -2159,6 +2209,37 @@ void MainWindow::on_shema1_calculate_clicked()
         }
 
         ui->label_13->setText(voltageText);
+
+        if (circuitI1Text != "I1 * ("){
+            circuitI1Text.chop(2);
+            circuitI1Text += " ) = ";
+        } else {
+            circuitI1Text.chop(3);
+            circuitI1Text += "* 0 = ";
+        }
+
+        if (circuitI2Text != "I2 * ("){
+            circuitI2Text.chop(2);
+            circuitI2Text += " ) = ";
+        } else {
+            circuitI2Text.chop(3);
+            circuitI2Text += "* 0 = ";
+        }
+
+        if (powerI1Text != ""){
+            powerI1Text.chop(2);
+        } else {
+            powerI1Text = "0";
+        }
+
+        if (powerI2Text != ""){
+            powerI2Text.chop(2);
+        } else {
+            powerI2Text = "0";
+        }
+
+        QString combinedText = circuitI1Text + powerI1Text + "\n" + circuitI2Text + powerI2Text;
+        ui->label_2->setText(combinedText);
     }
 }
 

@@ -3317,7 +3317,7 @@ alternate-background-color: rgb(255, 255, 255);</string>
          <x>20</x>
          <y>50</y>
          <width>362</width>
-         <height>241</height>
+         <height>361</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -3354,6 +3354,13 @@ alternate-background-color: rgb(255, 255, 255);</string>
             <height>16777215</height>
            </size>
           </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
           <property name="text">
            <string/>
           </property>
