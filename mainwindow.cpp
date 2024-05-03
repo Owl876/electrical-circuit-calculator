@@ -2215,18 +2215,18 @@ void MainWindow::on_shema1_calculate_clicked()
 
         if (circuitI1Text != "I1 * ("){
             circuitI1Text.chop(2);
-            circuitI1Text += " ) = ";
+            circuitI1Text += " ) ";
         } else {
             circuitI1Text.chop(3);
-            circuitI1Text += "* 0 = ";
+            circuitI1Text += "* 0 ";
         }
 
         if (circuitI2Text != "I2 * ("){
             circuitI2Text.chop(2);
-            circuitI2Text += " ) = ";
+            circuitI2Text += " ) ";
         } else {
             circuitI2Text.chop(3);
-            circuitI2Text += "* 0 = ";
+            circuitI2Text += "* 0 ";
         }
 
         if (powerI1Text != ""){
@@ -2390,58 +2390,31 @@ void MainWindow::on_shema3_calculate_clicked()
     } else if ((cell2 == 10) or (cell2 == 5) or (cell2==6) or (cell4 == 10) or (cell4 == 5) or (cell4==6) or ((cell6 == 10 or cell6==5 or cell6==6) and (cell5 == 10 or cell5==5 or cell5==6)) or ((cell1 == 10 or cell1==5 or cell1==6) and (cell3 == 10 or cell3==5 or cell3==6))) {
         ui->label->setText("Цепь не замкнута");
     } else {
-        //1 контур
-        QString outright1 = " = ";
-        QString outleft1 = "I1*";
-        //2 контур
-        QString outright2 = " = ";
-        QString outleft2 = "I2(";
-        //3 контур
-        QString outright3 = " = ";
-        QString outleft3 = "I3";
-
-
         double allvoltage = 0, allresistance = 0;
-
-        if (cell1 == 1 or cell1 == 2) {
-            allvoltage += voltage[1];
-            outright1 += "E1";
-        }
         if (cell4 == 1 or cell4 ==2 ){
             allvoltage += voltage[4];
-            outright2 += "E4";
         }else if (cell4 == 7 or cell4 == 8){
             allresistance += resistance[4];
         }
-        if (cell5 == 1 or cell5 == 2) {
-            allvoltage += voltage[5];
-            outright2 += " - E5";
-            outright3 += "E5";
-        }
-        if (cell3 == 1 or cell3 == 2) {
-            allvoltage += voltage[3];
-            outright1 += " - E3";
-            outright2 += " + E3";
-        }
-        if (cell6 == 1 or cell6 == 2) {
-            allvoltage += voltage[6];
-            outright3 += " - E6";
-        }
         if (cell2 == 1 or cell2 ==2 ){
             allvoltage += voltage[2];
-            outright2 += " - E2";
         }else if (cell2 == 7 or cell2 == 8){
             allresistance += resistance[2];
         }
-        if (outright1 == " = ") {
-            outright1 += "0";
+
+        if (cell5 == 1 or cell5 == 2) {
+            allvoltage += voltage[5];
         }
-        if (outright3 == " = ") {
-            outright3 += "0";
+        if (cell3 == 1 or cell3 == 2) {
+            allvoltage += voltage[3];
         }
-        if (outright2 == " = ") {
-            outright2 += "0";
+        if (cell1 == 1 or cell1 == 2) {
+            allvoltage += voltage[1];
         }
+        if (cell6 == 1 or cell6 == 2) {
+            allvoltage += voltage[6];
+        }
+
         if (cell1 == 3 or cell1 == 4) {
             resistance[1] = (allvoltage*allvoltage/power[1]);
         }
@@ -2464,47 +2437,6 @@ void MainWindow::on_shema3_calculate_clicked()
             allresistance += (resistance[5]*resistance[6])/(resistance[5]+resistance[6]);
         }
 
-        if ((cell1 == 7 or cell1 ==8) and (cell3 == 7 or cell3 == 8)) {
-            outleft1 += "(R1 + R3) - I2*R3";
-        } else if (cell1 == 7 or cell1 ==8) {
-            outleft1 += "R1";
-        }else if (cell3 == 7 or cell3 ==8) {
-            outleft1 += "R3 - I2*R3";
-        }
-        if (outleft1 == "I1*") {
-            outleft1 = "0";
-        }
-        if (cell2 == 7 or cell2 ==8) {
-            outleft2 += "R2 +";
-        }
-        if (cell3 == 7 or cell3 ==8) {
-            outleft2 += " R3 + ";
-            outright2.push_front(" - I1*R3");
-        }
-        if (cell4 == 7 or cell4 ==8) {
-            outleft2 += " R4 + ";
-        }
-        if (cell5 == 7 or cell5 ==8) {
-            outleft2 += "R5 + ";
-            outright2.push_front(" - I3*R5");
-        }
-        if (outleft2 == "I2(") {
-            outleft2 = "0";
-        } else {
-            outleft2.chop(2);
-            outleft2 += ")";
-        }
-        if ((cell5 == 7 or cell5 ==8) and (cell6 == 7 or cell6 == 8)) {
-            outleft3 += "(R5 + R6) - I2*R5";
-        } else if (cell5 == 7 or cell5 ==8) {
-            outleft3 += "R5 - I2*R5";
-        } else if (cell6 == 7 or cell6 ==8) {
-            outleft3 += "R6";
-        }
-        if (outleft3 == "I3") {
-            outleft3 = "0";
-        }
-
 
         if (cell4 == 3 or cell4 ==4) {
             allresistance += allvoltage*allvoltage/power[4];
@@ -2514,9 +2446,6 @@ void MainWindow::on_shema3_calculate_clicked()
         }
 
         QString amperage = QString::number (allvoltage/allresistance);
-        QString allout1 = outleft1 + outright1;
-        QString allout2 = outleft2 + outright2;
-        QString allout3 = outleft3 + outright3;
         if (allresistance == 0) {
             amperage = "Короткое замыкание!!";
             ui->label->setText( amperage);
@@ -2545,7 +2474,6 @@ void MainWindow::on_shema3_calculate_clicked()
         }
 
         ui->label_13->setText(voltageText);
-        ui->label_2->setText(allout1 + '\n' + allout2 + '\n' + allout3 + '\n');
     }
 }
 
@@ -2556,69 +2484,35 @@ void MainWindow::on_shema4_calculate_clicked()
     } else if ((cell2 == 10) or (cell2 == 5) or (cell2==6) or (cell4 == 10) or (cell4 == 5) or (cell4==6) or (cell1 == 10) or (cell1 == 5) or (cell1==6) or ((cell3 == 10 or cell3==5 or cell3==6) and (cell5 == 10 or cell5==5 or cell5==6)) or ((cell6 == 10 or cell6==5 or cell6==6) and (cell7 == 10 or cell7==5 or cell7==6))) {
         ui->label->setText("Цепь не замкнута");
     } else {
-        //1 контур
-        QString outright1 = " = ";
-        QString outleft1 = "I1*(";
-
-
-        //2 контур
-        QString outright2 = " = ";
-        QString outleft2 = "I2";
-
-
-        //3 контур
-        QString outright3 = " = ";
-        QString outleft3 = "I3";
-
-
         double allvoltage = 0, allresistance = 0;
-        if (cell1 == 1 or cell1 == 2) {
-            allvoltage += voltage[1];
-            outright1 += "E1";
-        } else if (cell1 == 7 or cell1 == 8){
-            allresistance += resistance[1];
-        }
-        if (cell2 == 1 or cell2 ==2 ){
-            allvoltage += voltage[2];
-            outright1 += " - E2";
-        }else if (cell2 == 7 or cell2 == 8){
-            allresistance += resistance[2];
-        }
         if (cell4 == 1 or cell4 ==2 ){
             allvoltage += voltage[4];
-            outright1 += " + E4";
         }else if (cell4 == 7 or cell4 == 8){
             allresistance += resistance[4];
         }
-
-        if (cell3 == 1 or cell3 == 2) {
-            allvoltage += voltage[3];
-            outright1 += " - E3";
-            outright3 += "E3";
+        if (cell2 == 1 or cell2 ==2 ){
+            allvoltage += voltage[2];
+        }else if (cell2 == 7 or cell2 == 8){
+            allresistance += resistance[2];
         }
+        if (cell1 == 1 or cell1 == 2) {
+            allvoltage += voltage[1];
+        } else if (cell1 == 7 or cell1 == 8){
+            allresistance += resistance[1];
+        }
+
         if (cell5 == 1 or cell5 == 2) {
             allvoltage += voltage[5];
-            outright3 += " - E5";
         }
-        if (cell6 == 1 or cell6 == 2) {
-            allvoltage += voltage[6];
-            outright1 += " - E6";
-            outright2 += "E6";
+        if (cell3 == 1 or cell3 == 2) {
+            allvoltage += voltage[3];
         }
         if (cell7 == 1 or cell7 == 2) {
             allvoltage += voltage[7];
-            outright2 += " - E7";
         }
-        if (outright1 == " = ") {
-            outright1 += "0";
+        if (cell6 == 1 or cell6 == 2) {
+            allvoltage += voltage[6];
         }
-        if (outright2 == " = ") {
-            outright2 += "0";
-        }
-        if (outright3 == " = ") {
-            outright3 += "0";
-        }
-
 
         if (cell5 == 3 or cell5 == 4) {
             resistance[5] = (allvoltage*allvoltage/power[5]);
@@ -2653,59 +2547,8 @@ void MainWindow::on_shema4_calculate_clicked()
             allresistance += allvoltage*allvoltage/power[1];
         }
 
-        //1 контур
-        if (cell1 == 7 or cell1 ==8) {
-            outleft1 += "R1 +";
-        }
-        if (cell3 == 7 or cell3 ==8) {
-            outleft1 += " R3 +";
-            outright1.push_front(" - I3*R3");
-        }
-        if (cell2 == 7 or cell2 ==8) {
-            outleft1 += " R2 +";
-        }
-        if (cell4 == 7 or cell4 ==8) {
-            outleft1 += " R4 +";
-        }
-        if (cell6 == 7 or cell6 ==8) {
-            outleft1 += " R6 +";
-            outright1.push_front(" - I2*R6");
-        }
-        if (outleft1 == "I1*(") {
-            outleft1 = "0";
-        } else {
-            outleft1.chop(2);
-            outleft1 += ")";
-        }
-
-        //2 контур
-        if ((cell7 == 7 or cell7 ==8) and (cell6 == 7 or cell6 == 8)) {
-            outleft2 += "(R7 + R6) - I1*R6";
-        } else if (cell6 == 7 or cell6 ==8) {
-            outleft2 += "R6 - I1*R6";
-        } else if (cell7 == 7 or cell7 ==8) {
-            outleft2 += "R7";
-        }
-        if (outleft2 == "I2") {
-            outleft2 = "0";
-        }
-
-        //3 контур
-        if ((cell5 == 7 or cell5 ==8) and (cell3 == 7 or cell3 == 8)) {
-            outleft3 += "(R5 + R3) - I1*R3";
-        } else if (cell5 == 7 or cell5 ==8) {
-            outleft3 += "R5 - I1*R3";
-        } else if (cell3 == 7 or cell3 ==8) {
-            outleft3 += "R3";
-        }
-        if (outleft3 == "I3") {
-            outleft3 = "0";
-        }
 
         QString amperage = QString::number (allvoltage/allresistance);
-        QString allout1 = outleft1 + outright1;
-        QString allout2 = outleft2 + outright2;
-        QString allout3 = outleft3 + outright3;
         if (allresistance == 0) {
             amperage = "Короткое замыкание!!";
             ui->label->setText( amperage);
@@ -2737,7 +2580,6 @@ void MainWindow::on_shema4_calculate_clicked()
         }
 
         ui->label_13->setText(voltageText);
-        ui->label_2->setText(allout1 + '\n' + allout2 + '\n' + allout3 + '\n');
     }
 }
 
