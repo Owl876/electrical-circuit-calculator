@@ -2133,6 +2133,8 @@ void MainWindow::on_shema1_calculate_clicked()
         QString circuitI2Text = "I2 * (";
         QString powerI1Text = "";
         QString powerI2Text = "";
+        QString conflictI1Text = "";
+        QString conflictI2Text = "";
 
         if (cell1 == 1 or cell1 == 2) {
             allvoltage += voltage[1];
@@ -2157,8 +2159,9 @@ void MainWindow::on_shema1_calculate_clicked()
             powerI1Text += " - E2 +";
         }else if (cell2 == 7 or cell2 == 8){
             circuitI2Text += " R2 +";
-            circuitI1Text.chop(2);
-            circuitI1Text += " - R2 +";
+            circuitI1Text += " R2 +";
+            conflictI1Text += " - I2 * R2";
+            conflictI2Text += " - I1 * R2";
         }
         if (cell3 == 1 or cell3 == 2) {
             allvoltage += voltage[3];
@@ -2238,7 +2241,7 @@ void MainWindow::on_shema1_calculate_clicked()
             powerI2Text = "0";
         }
 
-        QString combinedText = circuitI1Text + powerI1Text + "\n" + circuitI2Text + powerI2Text;
+        QString combinedText = circuitI1Text + conflictI1Text + "= " + powerI1Text + "\n" + circuitI2Text + conflictI2Text + "= " + powerI2Text;
         ui->label_2->setText(combinedText);
     }
 }
@@ -2251,28 +2254,54 @@ void MainWindow::on_shema2_calculate_clicked()
         ui->label->setText("Цепь не замкнута");
     } else {
         double allvoltage = 0, allresistance = 0;
+
+        QString circuitI1Text = "I1 * (";
+        QString circuitI2Text = "I2 * (";
+        QString powerI1Text = "";
+        QString powerI2Text = "";
+        QString conflictI1Text = "";
+        QString conflictI2Text = "";
+
         if (cell1 == 1 or cell1 == 2) {
             allvoltage += voltage[1];
+            powerI1Text += " E1 +";
         } else if (cell1 == 7 or cell1 == 8){
             allresistance += resistance[1];
-        }
-        if (cell4 == 1 or cell4 ==2 ){
-            allvoltage += voltage[4];
-        }else if (cell4 == 7 or cell4 == 8){
-            allresistance += resistance[4];
+            circuitI1Text += " R1 +";
         }
         if (cell2 == 1 or cell2 ==2 ){
             allvoltage += voltage[2];
+            powerI1Text += " E2 +";
         }else if (cell2 == 7 or cell2 == 8){
             allresistance += resistance[2];
+            circuitI1Text += " R2 +";
+        }
+        if (cell4 == 1 or cell4 ==2 ){
+            allvoltage += voltage[4];
+            powerI1Text += " E4 +";
+        }else if (cell4 == 7 or cell4 == 8){
+            allresistance += resistance[4];
+            circuitI1Text += " R4 +";
         }
 
         if (cell5 == 1 or cell5 == 2) {
             allvoltage += voltage[5];
+            powerI2Text += " E5 +";
+        }else if (cell3 == 7 or cell3 == 8){
+            circuitI2Text += " R5 +";
         }
         if (cell3 == 1 or cell3 == 2) {
             allvoltage += voltage[3];
+            circuitI2Text += " R3 +";
+            powerI1Text.chop(2);
+            powerI1Text += " - E3 +";
+        }else if (cell3 == 7 or cell3 == 8){
+            circuitI2Text += " R3 +";
+            circuitI1Text += " R3 +";
+            conflictI1Text += " - I2 * R3";
+            conflictI2Text += " - I1 * R3";
         }
+
         if (cell5 == 3 or cell5 == 4) {
             resistance[5] = (allvoltage*allvoltage/power[5]);
         }
@@ -2320,6 +2349,37 @@ void MainWindow::on_shema2_calculate_clicked()
         }
 
         ui->label_13->setText(voltageText);
+
+        if (circuitI1Text != "I1 * ("){
+            circuitI1Text.chop(2);
+            circuitI1Text += " ) ";
+        } else {
+            circuitI1Text.chop(3);
+            circuitI1Text += "* 0 ";
+        }
+
+        if (circuitI2Text != "I2 * ("){
+            circuitI2Text.chop(2);
+            circuitI2Text += " ) ";
+        } else {
+            circuitI2Text.chop(3);
+            circuitI2Text += "* 0 ";
+        }
+
+        if (powerI1Text != ""){
+            powerI1Text.chop(2);
+        } else {
+            powerI1Text = "0";
+        }
+
+        if (powerI2Text != ""){
+            powerI2Text.chop(2);
+        } else {
+            powerI2Text = "0";
+        }
+
+        QString combinedText = circuitI1Text + conflictI1Text + "= " + powerI1Text + "\n" + circuitI2Text + conflictI2Text + "= " + powerI2Text;
+        ui->label_2->setText(combinedText);
     }
 }
 
