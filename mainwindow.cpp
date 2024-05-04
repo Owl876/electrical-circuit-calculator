@@ -2392,13 +2392,13 @@ void MainWindow::on_shema3_calculate_clicked()
     } else {
         //1 контур
         QString outright1 = " = ";
-        QString outleft1 = "I1*";
+        QString outleft1 = "I1 * ";
         //2 контур
         QString outright2 = " = ";
-        QString outleft2 = "I2(";
+        QString outleft2 = "I2 * ( ";
         //3 контур
         QString outright3 = " = ";
-        QString outleft3 = "I3";
+        QString outleft3 = "I3 * ";
 
 
         double allvoltage = 0, allresistance = 0;
@@ -2465,44 +2465,44 @@ void MainWindow::on_shema3_calculate_clicked()
         }
 
         if ((cell1 == 7 or cell1 ==8) and (cell3 == 7 or cell3 == 8)) {
-            outleft1 += "(R1 + R3) - I2*R3";
+            outleft1 += "(R1 + R3) - I2 * R3";
         } else if (cell1 == 7 or cell1 ==8) {
             outleft1 += "R1";
         }else if (cell3 == 7 or cell3 ==8) {
-            outleft1 += "R3 - I2*R3";
+            outleft1 += "R3 - I2 * R3";
         }
-        if (outleft1 == "I1*") {
-            outleft1 = "0";
+        if (outleft1 == "I1 * ") {
+            outleft1 += " * 0";
         }
         if (cell2 == 7 or cell2 ==8) {
             outleft2 += "R2 +";
         }
         if (cell3 == 7 or cell3 ==8) {
             outleft2 += " R3 + ";
-            outright2.push_front(" - I1*R3");
+            outright2.push_front(" - I1 * R3");
         }
         if (cell4 == 7 or cell4 ==8) {
             outleft2 += " R4 + ";
         }
         if (cell5 == 7 or cell5 ==8) {
             outleft2 += "R5 + ";
-            outright2.push_front(" - I3*R5");
+            outright2.push_front(" - I3 * R5");
         }
-        if (outleft2 == "I2(") {
-            outleft2 = "0";
+        if (outleft2 == "I2 * (") {
+            outleft2 += " * 0";
         } else {
             outleft2.chop(2);
             outleft2 += ")";
         }
         if ((cell5 == 7 or cell5 ==8) and (cell6 == 7 or cell6 == 8)) {
-            outleft3 += "(R5 + R6) - I2*R5";
+            outleft3 += "(R5 + R6) - I2 * R5";
         } else if (cell5 == 7 or cell5 ==8) {
-            outleft3 += "R5 - I2*R5";
+            outleft3 += "R5 - I2 * R5";
         } else if (cell6 == 7 or cell6 ==8) {
             outleft3 += "R6";
         }
-        if (outleft3 == "I3") {
-            outleft3 = "0";
+        if (outleft3 == "I3 * ") {
+            outleft3 += " * 0";
         }
 
 
@@ -2521,9 +2521,9 @@ void MainWindow::on_shema3_calculate_clicked()
             amperage = "Короткое замыкание!!";
             ui->label->setText( amperage);
         } else {
-            ui->label->setText(allout1 + '\n' + allout2 + '\n' + allout3 + '\n');
+            ui->label_2->setText(allout1 + '\n' + allout2 + '\n' + allout3 + '\n');
 
-            //ui->label->setText("Сила тока в цепи = " + amperage + "А");
+            ui->label->setText("Сила тока в цепи = " + amperage + "А");
         }
         QString voltageText = "";
 
@@ -2559,17 +2559,17 @@ void MainWindow::on_shema4_calculate_clicked()
     } else {
         //1 контур
         QString outright1 = " = ";
-        QString outleft1 = "I1*(";
+        QString outleft1 = "I1 * (";
 
 
         //2 контур
         QString outright2 = " = ";
-        QString outleft2 = "I2";
+        QString outleft2 = "I2 * ";
 
 
         //3 контур
         QString outright3 = " = ";
-        QString outleft3 = "I3";
+        QString outleft3 = "I3 * ";
 
 
         double allvoltage = 0, allresistance = 0;
@@ -2660,7 +2660,7 @@ void MainWindow::on_shema4_calculate_clicked()
         }
         if (cell3 == 7 or cell3 ==8) {
             outleft1 += " R3 +";
-            outright1.push_front(" - I3*R3");
+            outright1.push_front(" - I3 * R3");
         }
         if (cell2 == 7 or cell2 ==8) {
             outleft1 += " R2 +";
@@ -2670,10 +2670,10 @@ void MainWindow::on_shema4_calculate_clicked()
         }
         if (cell6 == 7 or cell6 ==8) {
             outleft1 += " R6 +";
-            outright1.push_front(" - I2*R6");
+            outright1.push_front(" - I2 * R6");
         }
-        if (outleft1 == "I1*(") {
-            outleft1 = "0";
+        if (outleft1 == "I1 * (") {
+            outleft1 += " * 0";
         } else {
             outleft1.chop(2);
             outleft1 += ")";
@@ -2681,26 +2681,26 @@ void MainWindow::on_shema4_calculate_clicked()
 
         //2 контур
         if ((cell7 == 7 or cell7 ==8) and (cell6 == 7 or cell6 == 8)) {
-            outleft2 += "(R7 + R6) - I1*R6";
+            outleft2 += "(R7 + R6) - I1 * R6";
         } else if (cell6 == 7 or cell6 ==8) {
-            outleft2 += "R6 - I1*R6";
+            outleft2 += "R6 - I1 * R6";
         } else if (cell7 == 7 or cell7 ==8) {
             outleft2 += "R7";
         }
-        if (outleft2 == "I2") {
-            outleft2 = "0";
+        if (outleft2 == "I2 ") {
+            outleft2 += " * 0";
         }
 
         //3 контур
         if ((cell5 == 7 or cell5 ==8) and (cell3 == 7 or cell3 == 8)) {
-            outleft3 += "(R5 + R3) - I1*R3";
+            outleft3 += "(R5 + R3) - I1 * R3";
         } else if (cell5 == 7 or cell5 ==8) {
-            outleft3 += "R5 - I1*R3";
+            outleft3 += "R5 - I1 * R3";
         } else if (cell3 == 7 or cell3 ==8) {
             outleft3 += "R3";
         }
-        if (outleft3 == "I3") {
-            outleft3 = "0";
+        if (outleft3 == "I3 ") {
+            outleft3 += " * 0";
         }
 
         QString amperage = QString::number (allvoltage/allresistance);
@@ -2711,7 +2711,9 @@ void MainWindow::on_shema4_calculate_clicked()
             amperage = "Короткое замыкание!!";
             ui->label->setText( amperage);
         } else {
-            ui->label->setText(allout1 + '\n' + allout2 + '\n' + allout3 + '\n');
+            ui->label_2->setText(allout1 + '\n' + allout2 + '\n' + allout3 + '\n');
+
+            ui->label->setText("Сила тока в цепи = " + amperage + "А");
         }
         QString voltageText = "";
 
