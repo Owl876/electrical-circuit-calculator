@@ -3,6 +3,7 @@
 #include "QPixmap"
 #include "QSignalMapper"
 #include <QtWidgets>
+#include <QElapsedTimer>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -2025,6 +2026,10 @@ void MainWindow::on_key_clicked()
 // Это кнопки "Расчитать". В них делай основые вычисления по каждой схеме
 void MainWindow::on_shema0_calculate_clicked()
 {
+    // Таймер для времени работы функции
+    QElapsedTimer timer;
+    timer.start();
+
     if ((cell1 != 1) and (cell1 !=2) and (cell2 != 1) and (cell2 !=2) and (cell3 != 1) and (cell3 !=2) and (cell4 != 1) and (cell4 !=2)) {
         ui->label->setText("Источник отсутствует");
     } else if ((cell1 == 10) or (cell2 == 10) or  (cell3 == 10) or  (cell4 == 10) or (cell1 == 5) or (cell2 == 5) or  (cell3 == 5) or  (cell4 == 5) or (cell1 == 6) or (cell2 == 6) or  (cell3 == 6) or  (cell4 == 6)) {
@@ -2040,7 +2045,7 @@ void MainWindow::on_shema0_calculate_clicked()
         // Это стандартный метод вывода на экран (текст появится в правом верхем углу)
         if (cell1 == 1 or cell1 == 2) {
             allvoltage += voltage[1];
-            powerText += "E1 +";
+            powerText += " E1 +";
         } else if (cell1 == 7 or cell1 == 8) {
             allresistance += resistance[1];
             //circuitText = circuitText + " R" + QString::number(countRez) + " +";
@@ -2049,7 +2054,7 @@ void MainWindow::on_shema0_calculate_clicked()
         }
         if (cell2 == 1 or cell2 == 2) {
             allvoltage += voltage[2];
-            powerText += "E2 +";
+            powerText += " E2 +";
         } else if (cell2 == 7 or cell2 == 8) {
             allresistance += resistance[2];
             circuitText += " R2 +";
@@ -2057,7 +2062,7 @@ void MainWindow::on_shema0_calculate_clicked()
         }
         if (cell3 == 1 or cell3 == 2) {
             allvoltage += voltage[3];
-            powerText += "E3 +";
+            powerText += " E3 +";
         } else if (cell3 == 7 or cell3 == 8) {
             allresistance += resistance[3];
             circuitText += " R3 +";
@@ -2065,7 +2070,7 @@ void MainWindow::on_shema0_calculate_clicked()
         }
         if (cell4 == 1 or cell4 == 2) {
             allvoltage += voltage[4];
-            powerText += "E4 +";
+            powerText += " E4 +";
         } else if (cell4 == 7 or cell4 == 8) {
             allresistance += resistance[4];
             circuitText += " R4 +";
@@ -2108,20 +2113,32 @@ void MainWindow::on_shema0_calculate_clicked()
         }
 
         ui->label_13->setText(voltageText);
-        circuitText.chop(2);
-        circuitText = circuitText + " ) = ";
+        if (circuitText != "I1 * ("){
+            circuitText.chop(2);
+            circuitText += " ) ";
+        } else {
+            circuitText.chop(3);
+            circuitText += "* 0 ";
+        }
         powerText.chop(2);
 
 
-        QString combinedText = circuitText + powerText;
+        QString combinedText = circuitText + "= " + powerText;
         ui->label_2->setText(combinedText);
 
     }
     //ui->label->setText("Хелоу");
+    qint64 elapsedTime = timer.nsecsElapsed();
+    double elapsedSeconds = elapsedTime / 1.0e9;
+    qDebug() << "Время работы функции: " << elapsedTime << " нс (" << elapsedSeconds << " секунд)";
+
 }
 
 void MainWindow::on_shema1_calculate_clicked()
 {
+    QElapsedTimer timer;
+    timer.start();
+
     if ((cell1 != 1) and (cell1 !=2) and (cell2 != 1) and (cell2 !=2) and (cell3 != 1) and (cell3 !=2) and (cell4 != 1) and (cell4 !=2)) {
         ui->label->setText("Источник отсутствует");
     } else if ((cell1 == 10) or  (cell4 == 10) or (cell1 == 5) or  (cell4 == 5) or (cell1 == 6) or  (cell4 == 6) or ((cell2 == 10 or cell2==5 or cell2==6) and (cell3 == 10 or cell3==5 or cell3==6))) {
@@ -2244,10 +2261,17 @@ void MainWindow::on_shema1_calculate_clicked()
         QString combinedText = circuitI1Text + conflictI1Text + "= " + powerI1Text + "\n" + circuitI2Text + conflictI2Text + "= " + powerI2Text;
         ui->label_2->setText(combinedText);
     }
+
+    qint64 elapsedTime = timer.nsecsElapsed();
+    double elapsedSeconds = elapsedTime / 1.0e9;
+    qDebug() << "Время работы функции: " << elapsedTime << " нс (" << elapsedSeconds << " секунд)";
 }
 
 void MainWindow::on_shema2_calculate_clicked()
 {
+    QElapsedTimer timer;
+    timer.start();
+
     if ((cell1 != 1) and (cell1 !=2) and (cell2 != 1) and (cell2 !=2) and (cell3 != 1) and (cell3 !=2) and (cell4 != 1) and (cell4 !=2) and (cell5 != 1) and (cell5!=2)) {
         ui->label->setText("Источник отсутствует");
     } else if ((cell1 == 10) or  (cell4 == 10) or (cell1 == 5) or  (cell4 == 5) or (cell1 == 6) or  (cell4 == 6) or (cell2 == 10) or (cell2 == 5) or (cell2==6) or ((cell3 == 10 or cell3==5 or cell3==6) and (cell5 == 10 or cell5==5 or cell5==6))) {
@@ -2287,12 +2311,12 @@ void MainWindow::on_shema2_calculate_clicked()
         if (cell5 == 1 or cell5 == 2) {
             allvoltage += voltage[5];
             powerI2Text += " E5 +";
-        }else if (cell3 == 7 or cell3 == 8){
+        }else if (cell5 == 7 or cell5 == 8){
             circuitI2Text += " R5 +";
         }
         if (cell3 == 1 or cell3 == 2) {
             allvoltage += voltage[3];
-            circuitI2Text += " R3 +";
+            powerI2Text += " E3 +";
             powerI1Text.chop(2);
             powerI1Text += " - E3 +";
         }else if (cell3 == 7 or cell3 == 8){
@@ -2381,10 +2405,17 @@ void MainWindow::on_shema2_calculate_clicked()
         QString combinedText = circuitI1Text + conflictI1Text + "= " + powerI1Text + "\n" + circuitI2Text + conflictI2Text + "= " + powerI2Text;
         ui->label_2->setText(combinedText);
     }
+
+    qint64 elapsedTime = timer.nsecsElapsed();
+    double elapsedSeconds = elapsedTime / 1.0e9;
+    qDebug() << "Время работы функции: " << elapsedTime << " нс (" << elapsedSeconds << " секунд)";
 }
 
 void MainWindow::on_shema3_calculate_clicked()
 {
+    QElapsedTimer timer;
+    timer.start();
+
     if ((cell1 != 1) and (cell1 !=2) and (cell2 != 1) and (cell2 !=2) and (cell3 != 1) and (cell3 !=2) and (cell4 != 1) and (cell4 !=2) and (cell5 != 1) and (cell5!=2) and (cell6!= 1) and (cell6!=2)) {
         ui->label->setText("Источник отсутствует");
     } else if ((cell2 == 10) or (cell2 == 5) or (cell2==6) or (cell4 == 10) or (cell4 == 5) or (cell4==6) or ((cell6 == 10 or cell6==5 or cell6==6) and (cell5 == 10 or cell5==5 or cell5==6)) or ((cell1 == 10 or cell1==5 or cell1==6) and (cell3 == 10 or cell3==5 or cell3==6))) {
@@ -2548,10 +2579,17 @@ void MainWindow::on_shema3_calculate_clicked()
 
         ui->label_13->setText(voltageText);
     }
+
+    qint64 elapsedTime = timer.nsecsElapsed();
+    double elapsedSeconds = elapsedTime / 1.0e9;
+    qDebug() << "Время работы функции: " << elapsedTime << " нс (" << elapsedSeconds << " секунд)";
 }
 
 void MainWindow::on_shema4_calculate_clicked()
 {
+    QElapsedTimer timer;
+    timer.start();
+
     if ((cell1 != 1) and (cell1 !=2) and (cell2 != 1) and (cell2 !=2) and (cell3 != 1) and (cell3 !=2) and (cell4 != 1) and (cell4 !=2) and (cell5 != 1) and (cell5!=2) and (cell6!= 1) and (cell6!=2) and (cell7!= 1) and (cell7!=2)) {
         ui->label->setText("Источник отсутствует");
     } else if ((cell2 == 10) or (cell2 == 5) or (cell2==6) or (cell4 == 10) or (cell4 == 5) or (cell4==6) or (cell1 == 10) or (cell1 == 5) or (cell1==6) or ((cell3 == 10 or cell3==5 or cell3==6) and (cell5 == 10 or cell5==5 or cell5==6)) or ((cell6 == 10 or cell6==5 or cell6==6) and (cell7 == 10 or cell7==5 or cell7==6))) {
@@ -2741,6 +2779,10 @@ void MainWindow::on_shema4_calculate_clicked()
 
         ui->label_13->setText(voltageText);
     }
+
+    qint64 elapsedTime = timer.nsecsElapsed();
+    double elapsedSeconds = elapsedTime / 1.0e9;
+    qDebug() << "Время работы функции: " << elapsedTime << " нс (" << elapsedSeconds << " секунд)";
 }
 
 
